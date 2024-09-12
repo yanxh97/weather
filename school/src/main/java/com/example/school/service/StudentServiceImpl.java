@@ -37,4 +37,11 @@ public class StudentServiceImpl implements StudentService{
     public StudentDTO deleteStudentById(Long id) {
         return studentRepository.deleteStudentById(id);
     }
+
+    @Override
+    @Transactional
+    public List<StudentEntity> readAllStudent() {
+        List<StudentEntity> res = studentRepository.readAllStudent();
+        return res;
+    }
 }

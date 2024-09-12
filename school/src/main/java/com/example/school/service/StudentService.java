@@ -14,4 +14,5 @@ public interface StudentService {
     public StudentDTO readStudentById(Long id);
     public boolean updateStudent(StudentDTO stuDTO);
     public StudentDTO deleteStudentById(Long id);
+    public List<StudentEntity> readAllStudent();
 }

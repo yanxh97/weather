@@ -1,6 +1,7 @@
 package com.example.school.repository;
 
 import com.example.school.dto.StudentDTO;
+import com.example.school.entity.RelationEntity;
 import com.example.school.entity.StudentEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -79,5 +80,36 @@ public class StudentRepoImpl implements StudentRepo{
         em.getTransaction().commit();
         em.close();
         return stuDTO;
+    }
+
+    @Override
+    public List<StudentEntity> readAllStudent() {
+        StudentEntity stuEnt = null;
+        EntityManager em = emf.createEntityManager();
+//
+//        em.getTransaction().begin();
+//        stuEnt = em.find(StudentEntity.class, 1);
+//        System.out.println(stuEnt.getName());
+//        System.out.println(stuEnt.getRelationList().get(0).getStudent().getName());
+//        System.out.println(stuEnt.getRelationList().get(0).getTeacher().getName());
+//        em.getTransaction().commit();
+//        em.close();
+        //Session session = sf.getCurrentSession();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<StudentEntity> cq = cb.createQuery(StudentEntity.class);
+        Root<StudentEntity> root = cq.from(StudentEntity.class);
+        cq.select(root);
+        cq.where(cb.gt(root.get("id"), 10));
+        em.getTransaction().begin();
+        TypedQuery<StudentEntity> query = em.createQuery(cq);
+        List<StudentEntity> res = query.getResultList();
+        for (StudentEntity se : res){
+            List<RelationEntity> li = se.getRelationList();
+            for (RelationEntity re : li)
+                re.getTeacher();
+        }
+        em.getTransaction().commit();
+        em.close();
+        return res;
     }
 }

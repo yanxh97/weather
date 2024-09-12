@@ -16,12 +16,15 @@ public class StudentEntity {
     @SequenceGenerator(name = "s_seq", sequenceName = "student_seq", allocationSize = 1)
     private Long id;
     private String name;
+    @OneToMany(mappedBy = "student")
+    private List<RelationEntity> relationList;
 
     public StudentEntity() {}
 
-    public StudentEntity(Long id, String name) {
+    public StudentEntity(Long id, String name, List<RelationEntity> relationList) {
         this.id = id;
         this.name = name;
+        this.relationList = relationList;
     }
 
     public Long getId() {
@@ -38,5 +41,13 @@ public class StudentEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<RelationEntity> getRelationList() {
+        return relationList;
+    }
+
+    public void setRelationList(List<RelationEntity> relationList) {
+        this.relationList = relationList;
     }
 }

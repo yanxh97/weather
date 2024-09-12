@@ -46,4 +46,12 @@ public class SchoolController {
     public ResponseEntity<?> deleteStudentByID(@PathVariable("id") Long id){
         return new ResponseEntity<StudentDTO>(studentService.deleteStudentById(id), HttpStatus.OK);
     }
+
+    @GetMapping("/query")
+    public ResponseEntity<?> readAllStudent(){
+        //actually read one specific student
+        List<StudentEntity> stuEnt = studentService.readAllStudent();
+        //.getRelationList().get(0).getTeacher().getName()
+        return new ResponseEntity<List<StudentEntity>>(stuEnt, HttpStatus.OK);
+    }
 }
