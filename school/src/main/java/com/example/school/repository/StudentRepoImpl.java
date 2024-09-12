@@ -103,11 +103,11 @@ public class StudentRepoImpl implements StudentRepo{
         em.getTransaction().begin();
         TypedQuery<StudentEntity> query = em.createQuery(cq);
         List<StudentEntity> res = query.getResultList();
-        for (StudentEntity se : res){
-            List<RelationEntity> li = se.getRelationList();
-            for (RelationEntity re : li)
-                re.getTeacher();
-        }
+//        for (StudentEntity se : res){
+//            List<RelationEntity> li = se.getRelationList();
+//            for (RelationEntity re : li)
+//                re.getTeacher();
+//        }
         em.getTransaction().commit();
         em.close();
         return res;

@@ -13,7 +13,6 @@ public class RelationEntity {
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
-
     private TeacherEntity teacher;
 
     @ManyToOne

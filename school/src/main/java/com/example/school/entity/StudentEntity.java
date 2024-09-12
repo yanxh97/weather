@@ -16,7 +16,7 @@ public class StudentEntity {
     @SequenceGenerator(name = "s_seq", sequenceName = "student_seq", allocationSize = 1)
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student",fetch = FetchType.EAGER)
     private List<RelationEntity> relationList;
 
     public StudentEntity() {}

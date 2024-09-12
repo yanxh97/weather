@@ -10,11 +10,6 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableEurekaClient
 public class SearchApplication {
-    @Bean
-    RestTemplate getRestTemplate(){
-        return new RestTemplate();
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(SearchApplication.class, args);
     }
